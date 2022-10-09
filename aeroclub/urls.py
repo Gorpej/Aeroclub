@@ -24,7 +24,6 @@ router = routers.SimpleRouter()
 router.register('user', UserViewset, basename='user')
 
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
