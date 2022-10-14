@@ -18,16 +18,18 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from reservation.views import UserViewset
+from reservation.views import PilotViewset, AircraftViewset, SlotViewset,UserViewset
 
 router = routers.SimpleRouter()
+router.register('pilot', PilotViewset, basename='pilot')
+router.register('aircraft', AircraftViewset, basename='aircraft')
+router.register('slot', SlotViewset, basename='slot')
 router.register('user', UserViewset, basename='user')
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
 ]
